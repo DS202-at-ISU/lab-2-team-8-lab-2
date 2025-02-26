@@ -100,7 +100,7 @@ ggplot(ames, aes(x = ames$`Sale Price`)) +
 
 ```
 
-The distribution of sales prices is right skewed with a few major outliers.
+The distribution of sales prices is right skewed with a few major outliers. There appear to be a lot of values where the Sales Price is 0.
 
 Step 4
 

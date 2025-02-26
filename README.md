@@ -141,5 +141,17 @@ ggplot(ames, aes(x = ames$`Sale Price`)) +
     ## Warning: Use of `` ames$`Sale Price` `` is discouraged.
     ## ℹ Use `Sale Price` instead.
 
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- --> The
-distribution of sales prices is right skewed with a few major outliers.
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+The distribution of sales prices is right skewed with a few major
+outliers.
+
+Step 4
+
+Nina’s Work:
+
+Christopher’s Work:
+
+Jamey’s Work:
+
+Ryan’s Work:

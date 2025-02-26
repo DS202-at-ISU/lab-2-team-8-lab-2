@@ -127,7 +127,14 @@ This follows the general pattern, and doesn't describe any oddities discussed ea
 
 
 Christopher's Work:
+I made a scatter plot with x = Acresand y = Sale Price / 100000. The view was extremely zoomed out because of a couple outliers so I added filters to remove extreme values. The vast majority of properties are below 1 Acre and and cost under a 750 thousand dollars. There is a general trend of an increase in acreage leads to increased price, but there are a fair amount of outliers to this trend.
 
+```{r}
+library(dplyr)
+ggplot(ames %>% filter(Acres > 0, Acres < 5, `Sale Price` < 1000000, `Sale Price` > 0), aes(x = Acres, y = `Sale Price` / 100000)) + geom_point(alpha = 0.2)
+ggplot(ames %>% filter(Acres > 0, `Sale Price` > 0), aes(x = Acres, y = `Sale Price` / 100000)) + geom_point(alpha = 0.2)
+summary(ames["Acres"])
+```
 
 
 Jamey's Work:

@@ -172,7 +172,52 @@ ggplot(ames, aes(x = Bedrooms, y = `Sale Price`)) +
 ![](README_files/figure-gfm/setup2-1.png)<!-- --> This follows the
 general pattern, and doesn’t describe any oddities discussed earlier.
 
-Christopher’s Work:
+Christopher’s Work: I made a scatter plot with x = Acresand y = Sale
+Price / 100000. The view was extremely zoomed out because of a couple
+outliers so I added filters to remove extreme values. The vast majority
+of properties are below 1 Acre and and cost under a 750 thousand
+dollars. There is a general trend of an increase in acreage leads to
+increased price, but there are a fair amount of outliers to this trend.
+
+``` r
+library(dplyr)
+```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
+ggplot(ames %>% filter(Acres > 0, Acres < 5, `Sale Price` < 1000000, `Sale Price` > 0), aes(x = Acres, y = `Sale Price` / 100000)) + geom_point(alpha = 0.2)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+``` r
+ggplot(ames %>% filter(Acres > 0, `Sale Price` > 0), aes(x = Acres, y = `Sale Price` / 100000)) + geom_point(alpha = 0.2)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+
+``` r
+summary(ames["Acres"])
+```
+
+    ##      Acres        
+    ##  Min.   : 0.0000  
+    ##  1st Qu.: 0.1502  
+    ##  Median : 0.2200  
+    ##  Mean   : 0.2631  
+    ##  3rd Qu.: 0.2770  
+    ##  Max.   :12.0120  
+    ##  NA's   :89
 
 Jamey’s Work: I made a scatter plot with x = TotalLivingArea and y =
 Sale Price. But, it was incredibly zoomed out so I limited the cartesian
@@ -211,7 +256,7 @@ ggplot(ames_new, aes(x = ames_new$`YearBuilt`)) +
     ## Warning: Use of `ames_new$YearBuilt` is discouraged.
     ## ℹ Use `YearBuilt` instead.
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- --> After
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- --> After
 removing null values, the range is 1880 to 2022. The distribution of
 YearBuilt is skewed left and appears bimodal, with peaks around 2022 and
 ~1970.
@@ -230,7 +275,7 @@ ggplot(ames_new, aes(x = YearBuilt, y = ames_new$`Sale Price`)) +
     ## Warning: Use of `` ames_new$`Sale Price` `` is discouraged.
     ## ℹ Use `Sale Price` instead.
 
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 This is the plot with outliers. It is difficult to see the trend of the
 rest of the data, but the major outliers are all built after 2000.
@@ -248,9 +293,9 @@ ggplot(ames_new, aes(x = YearBuilt, y = ames_new$`Sale Price`)) +
     ## Warning: Use of `` ames_new$`Sale Price` `` is discouraged.
     ## ℹ Use `Sale Price` instead.
 
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
-This scatter plot shows that there isn’t too much of a relationship
+This scatter plot shows that there is a weak positive relationship
 between YearBuilt and Sale Price. There appears to be a slight curve in
 the data, that as YearBuilt increases, sale price increases. The only
 oddity in step 3 was that there were a lot of values that were 0, but

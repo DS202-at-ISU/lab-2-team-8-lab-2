@@ -7,9 +7,6 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(classdata)
-ames
-
 ```
 
 # Lab report #1
@@ -90,7 +87,7 @@ summary(ames$`Sale Price`)
 ```
 The range of Sales Price is $20,500,000.
 
-```{r, message = FALSE}
+```{r1, message = FALSE}
 library(ggplot2)
 
 ggplot(ames, aes(x = ames$`Sale Price`)) + 
@@ -106,6 +103,27 @@ Step 4
 
 Nina's Work:
 
+My chosen variable is Bedrooms. The possible range of this variable is 0-10. Most values lie around 2-5, and has a few outliers.
+```{r setup1, include=FALSE}
+
+library(ggplot2)
+
+ggplot(ames, aes(x = Bedrooms)) + 
+  geom_bar()
+
+```
+
+```{r setup2, include=FALSE}
+
+library(ggplot2)
+
+ggplot(ames, aes(x = Bedrooms, y = `Sale Price`)) + 
+  geom_point()+
+  coord_flip() 
+
+```
+This follows the general pattern, and doesn't describe any oddities discussed earlier.
+
 
 
 Christopher's Work:
@@ -113,7 +131,15 @@ Christopher's Work:
 
 
 Jamey's Work:
-
+I made a scatter plot with x = TotalLivingArea and y = Sale Price.
+But, it was incredibly zoomed out so I limited the cartesian coordinate range.
+There seems to be a positive correlation between Total Living Area and Sale Price based on the graph,
+although I would probably have to make a correlation matrix to confirm.
+```{r setup3, include=FALSE}
+ggplot(ames, aes(x = `TotalLivingArea (sf)`, y = `Sale Price`)) +
+  geom_point() +
+  coord_cartesian(ylim = c(100000, 500000))
+```
 
 
 Ryan's Work:
@@ -158,6 +184,4 @@ ggplot(ames_new, aes(x = YearBuilt, y = ames_new$`Sale Price`)) +
 ```
 
 This scatterplot shows that there really isn't a relationship between YearBuilt and Sale Price. The only oddity in step 3 was that there were a lot of values that were 0, but these scatterplots removed those values.
-
-
 

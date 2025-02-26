@@ -129,7 +129,7 @@ summary(ames$`Sale Price`)
 
 The range of Sales Price is \$20,500,000.
 
-``` r
+``` r1
 library(ggplot2)
 
 ggplot(ames, aes(x = ames$`Sale Price`)) + 
@@ -138,11 +138,6 @@ ggplot(ames, aes(x = ames$`Sale Price`)) +
   xlab("Sales Price")
 ```
 
-    ## Warning: Use of `` ames$`Sale Price` `` is discouraged.
-    ## ℹ Use `Sale Price` instead.
-
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
-
 The distribution of sales prices is right skewed with a few major
 outliers. There appear to be a lot of values where the Sales Price is 0.
 
@@ -150,9 +145,19 @@ Step 4
 
 Nina’s Work:
 
+My chosen variable is Bedrooms. The possible range of this variable is
+0-10. Most values lie around 2-5, and has a few outliers.
+
+This follows the general pattern, and doesn’t describe any oddities
+discussed earlier.
+
 Christopher’s Work:
 
-Jamey’s Work:
+Jamey’s Work: I made a scatter plot with x = TotalLivingArea and y =
+Sale Price. But, it was incredibly zoomed out so I limited the cartesian
+coordinate range. There seems to be a positive correlation between Total
+Living Area and Sale Price based on the graph, although I would probably
+have to make a correlation matrix to confirm.
 
 Ryan’s Work:
 

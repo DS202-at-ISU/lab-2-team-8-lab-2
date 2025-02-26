@@ -144,7 +144,7 @@ ggplot(ames, aes(x = ames$`Sale Price`)) +
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 The distribution of sales prices is right skewed with a few major
-outliers.
+outliers. There appear to be a lot of values where the Sales Price is 0.
 
 Step 4
 
@@ -155,3 +155,39 @@ Christopher’s Work:
 Jamey’s Work:
 
 Ryan’s Work:
+
+``` r
+library(dplyr)
+ames_new <- ames %>% filter(YearBuilt != 0)
+summary(ames_new$`YearBuilt`)
+```
+
+    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    ##    1880    1956    1978    1976    2002    2022
+
+After removing null values, the range is 1880 to 2022.
+
+``` r
+library(ggplot2)
+library(dplyr)
+ggplot(ames_new, aes(x = YearBuilt, y = ames_new$`Sale Price`)) +
+  geom_point() +
+  labs(title = "Year Built vs. Sale Price")
+```
+
+    ## Warning: Use of `` ames_new$`Sale Price` `` is discouraged.
+    ## ℹ Use `Sale Price` instead.
+
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+``` r
+ames_new <- ames_new %>% filter(ames_new$`Sale Price` != 0)
+ggplot(ames_new, aes(x = YearBuilt, y = ames_new$`Sale Price`)) +
+  geom_point() +
+  labs(title = "Year Built vs. Sale Price")
+```
+
+    ## Warning: Use of `` ames_new$`Sale Price` `` is discouraged.
+    ## ℹ Use `Sale Price` instead.
+
+![](README_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->

@@ -122,7 +122,7 @@ library(ggplot2)
 
 ggplot(ames, aes(x = Bedrooms, y = `Sale Price`)) + 
   geom_point()+
-  coord_flip()
+  coord_flip() 
 
 ```
 This follows the general pattern, and doesn't describe any oddities discussed earlier.

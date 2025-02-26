@@ -144,5 +144,44 @@ ggplot(ames, aes(x = `TotalLivingArea (sf)`, y = `Sale Price`)) +
 
 Ryan's Work:
 
+```{r, message = FALSE}
+library(dplyr)
+ames_new <- ames %>% filter(YearBuilt != 0)
+summary(ames_new$`YearBuilt`)
 
+ggplot(ames_new, aes(x = ames_new$`YearBuilt`)) + 
+  geom_histogram(binwidth = 5) + 
+  labs(title = "Histogram of Year Built") +
+  xlab("Year Built")
+
+```
+After removing null values, the range is 1880 to 2022. The distribution of YearBuilt is skewed left and appears bimodal, with peaks around 2022 and ~1970.
+
+
+```{r, message = FALSE}
+library(ggplot2)
+library(dplyr)
+
+ames_new <- ames_new %>% filter(ames_new$`Sale Price` != 0)
+
+ggplot(ames_new, aes(x = YearBuilt, y = ames_new$`Sale Price`)) +
+  geom_point() +
+  labs(title = "Year Built vs. Sale Price (With Major Outliers)")
+
+```
+
+This is the plot with outliers. It is difficult to see the trend of the rest of the data, but the major outliers are all built after 2000.
+
+```{r, message = FALSE}
+library(ggplot2)
+library(dplyr)
+ames_new <- ames_new %>% filter(ames_new$`Sale Price` < 100000)
+
+ggplot(ames_new, aes(x = YearBuilt, y = ames_new$`Sale Price`)) +
+  geom_point() +
+  labs(title = "Year Built vs. Sale Price (Without Major Outliers)")
+
+```
+
+This scatterplot shows that there really isn't a relationship between YearBuilt and Sale Price. The only oddity in step 3 was that there were a lot of values that were 0, but these scatterplots removed those values.
 

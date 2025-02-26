@@ -194,3 +194,39 @@ ggplot(ames, aes(x = `TotalLivingArea (sf)`, y = `Sale Price`)) +
 ![](README_files/figure-gfm/setup3-1.png)<!-- -->
 
 Ryan’s Work:
+
+``` r
+library(dplyr)
+ames_new <- ames %>% filter(YearBuilt != 0)
+summary(ames_new$`YearBuilt`)
+```
+
+    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    ##    1880    1956    1978    1976    2002    2022
+
+After removing null values, the range is 1880 to 2022.
+
+``` r
+library(ggplot2)
+library(dplyr)
+ggplot(ames_new, aes(x = YearBuilt, y = ames_new$`Sale Price`)) +
+  geom_point() +
+  labs(title = "Year Built vs. Sale Price")
+```
+
+    ## Warning: Use of `` ames_new$`Sale Price` `` is discouraged.
+    ## ℹ Use `Sale Price` instead.
+
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+``` r
+ames_new <- ames_new %>% filter(ames_new$`Sale Price` != 0)
+ggplot(ames_new, aes(x = YearBuilt, y = ames_new$`Sale Price`)) +
+  geom_point() +
+  labs(title = "Year Built vs. Sale Price")
+```
+
+    ## Warning: Use of `` ames_new$`Sale Price` `` is discouraged.
+    ## ℹ Use `Sale Price` instead.
+
+![](README_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->

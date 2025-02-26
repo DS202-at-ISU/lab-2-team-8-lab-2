@@ -7,6 +7,9 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(classdata)
+ames
+
 ```
 
 # Lab report #1
@@ -17,3 +20,105 @@ Include your answers in this document (Rmd file). Make sure that it knits proper
 
 All submissions to the github repo will be automatically uploaded for grading once the due date is passed.
 Submit a link to your repository on Canvas (only one submission per team) to signal to the instructors that you are done with your submission.
+
+Step 1
+```{r, message = FALSE}
+library(classdata)
+head(ames)
+```
+The variables in the dataset are Parcel ID, Address, Style, Occupancy, Sale Date, Sale Price, Multi Sale, YearBuilt, Acreas, TotalLivingArea (sf), Bedrooms, FinishedBsmtArea (sf), LotArea(sf), AC, FirePlace, and Neighborhood. The variables types include chrs, factors, dates, and doubles.
+
+The variable meanings:
+
+Parcel ID: character with ID.
+
+Address: property address in Ames, IA.
+
+Style: factor variable detailing the type of housing.
+
+Occupancy: factor variable of type of housing.
+
+Sale Date: date of sale.
+
+Sale Price: sales price (in US dollar).
+
+Multi Sale: logical value: was this sale part of a package?
+
+YearBuilt: integer value: year in which the house was built.
+
+Acres: acres of the lot.
+
+TotalLivingArea (sf): total living area in square feet.
+
+Bedrooms: number of bedrooms.
+
+FinishedBsmtArea (sf): total area of the finished basement in square feet.
+
+LotArea(sf): total lot area in square feet.
+
+AC: logical value: does the property have an AC?
+
+FirePlace: logical value: does the property have an fireplace?
+
+Neighborhood: factor variable - levels indicate neighborhood area in Ames.
+
+Possible ranges for each numerical variable:
+
+Date: 2017 to 2022
+
+Sale Price: 0 to 20,500,000
+
+YearBuilt: 2017 to 2022
+
+Acres: 12
+
+TotalLivingArea (sf): 6000
+
+Bedrooms: 10
+
+FinishedBsmtArea (sf): 6500
+
+LotArea(sf): 500000
+
+Step 2
+
+Acres, TotalLivingArea (sf), Bedrooms, and YearBuilt are likely variables that influence Sales Price.
+
+Step 3
+```{r, message = FALSE}
+summary(ames$`Sale Price`)
+```
+The range of Sales Price is $20,500,000.
+
+```{r, message = FALSE}
+library(ggplot2)
+
+ggplot(ames, aes(x = ames$`Sale Price`)) + 
+  geom_histogram(binwidth = 500000) + 
+  labs(title = "Histogram of Sales Price") +
+  xlab("Sales Price")
+
+```
+
+The distribution of sales prices is right skewed with a few major outliers.
+
+Step 4
+
+Nina's Work:
+
+
+
+Christopher's Work:
+
+
+
+Jamey's Work:
+
+
+
+Ryan's Work:
+
+
+
+
+

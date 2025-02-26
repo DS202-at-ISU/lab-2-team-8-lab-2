@@ -148,8 +148,31 @@ Nina’s Work:
 My chosen variable is Bedrooms. The possible range of this variable is
 0-10. Most values lie around 2-5, and has a few outliers.
 
-This follows the general pattern, and doesn’t describe any oddities
-discussed earlier.
+``` r
+library(ggplot2)
+
+ggplot(ames, aes(x = Bedrooms)) + 
+  geom_bar()
+```
+
+    ## Warning: Removed 447 rows containing non-finite outside the scale range
+    ## (`stat_count()`).
+
+![](README_files/figure-gfm/setup1-1.png)<!-- -->
+
+``` r
+library(ggplot2)
+
+ggplot(ames, aes(x = Bedrooms, y = `Sale Price`)) + 
+  geom_point()+
+  coord_flip() 
+```
+
+    ## Warning: Removed 447 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](README_files/figure-gfm/setup2-1.png)<!-- --> This follows the
+general pattern, and doesn’t describe any oddities discussed earlier.
 
 Christopher’s Work:
 
@@ -158,5 +181,16 @@ Sale Price. But, it was incredibly zoomed out so I limited the cartesian
 coordinate range. There seems to be a positive correlation between Total
 Living Area and Sale Price based on the graph, although I would probably
 have to make a correlation matrix to confirm.
+
+``` r
+ggplot(ames, aes(x = `TotalLivingArea (sf)`, y = `Sale Price`)) +
+  geom_point() +
+  coord_cartesian(ylim = c(100000, 500000))
+```
+
+    ## Warning: Removed 447 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](README_files/figure-gfm/setup3-1.png)<!-- -->
 
 Ryan’s Work:

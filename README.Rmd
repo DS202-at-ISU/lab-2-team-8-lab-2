@@ -106,6 +106,27 @@ Step 4
 
 Nina's Work:
 
+My chosen variable is Bedrooms. The possible range of this variable is 0-10. Most values lie around 2-5, and has a few outliers.
+```{r setup, include=FALSE}
+
+library(ggplot2)
+
+ggplot(ames, aes(x = Bedrooms)) + 
+  geom_bar()
+
+```
+
+```{r setup, include=FALSE}
+
+library(ggplot2)
+
+ggplot(ames, aes(x = Bedrooms, y = `Sale Price`)) + 
+  geom_point()+
+  coord_flip()
+
+```
+This follows the general pattern, and doesn't describe any oddities discussed earlier.
+
 
 
 Christopher's Work:

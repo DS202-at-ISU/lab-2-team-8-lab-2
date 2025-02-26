@@ -155,8 +155,7 @@ ggplot(ames, aes(x = Bedrooms)) +
   geom_bar()
 ```
 
-    ## Warning: Removed 447 rows containing non-finite outside the scale range
-    ## (`stat_count()`).
+    ## Warning: Removed 447 rows containing non-finite values (`stat_count()`).
 
 ![](README_files/figure-gfm/setup1-1.png)<!-- -->
 
@@ -168,8 +167,7 @@ ggplot(ames, aes(x = Bedrooms, y = `Sale Price`)) +
   coord_flip() 
 ```
 
-    ## Warning: Removed 447 rows containing missing values or values outside the scale range
-    ## (`geom_point()`).
+    ## Warning: Removed 447 rows containing missing values (`geom_point()`).
 
 ![](README_files/figure-gfm/setup2-1.png)<!-- --> This follows the
 general pattern, and doesn’t describe any oddities discussed earlier.
@@ -188,8 +186,7 @@ ggplot(ames, aes(x = `TotalLivingArea (sf)`, y = `Sale Price`)) +
   coord_cartesian(ylim = c(100000, 500000))
 ```
 
-    ## Warning: Removed 447 rows containing missing values or values outside the scale range
-    ## (`geom_point()`).
+    ## Warning: Removed 447 rows containing missing values (`geom_point()`).
 
 ![](README_files/figure-gfm/setup3-1.png)<!-- -->
 
@@ -204,14 +201,30 @@ summary(ames_new$`YearBuilt`)
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
     ##    1880    1956    1978    1976    2002    2022
 
-After removing null values, the range is 1880 to 2022.
+``` r
+ggplot(ames_new, aes(x = ames_new$`YearBuilt`)) + 
+  geom_histogram(binwidth = 5) + 
+  labs(title = "Histogram of Year Built") +
+  xlab("Year Built")
+```
+
+    ## Warning: Use of `ames_new$YearBuilt` is discouraged.
+    ## ℹ Use `YearBuilt` instead.
+
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- --> After
+removing null values, the range is 1880 to 2022. The distribution of
+YearBuilt is skewed left and appears bimodal, with peaks around 2022 and
+~1970.
 
 ``` r
 library(ggplot2)
 library(dplyr)
+
+ames_new <- ames_new %>% filter(ames_new$`Sale Price` != 0)
+
 ggplot(ames_new, aes(x = YearBuilt, y = ames_new$`Sale Price`)) +
   geom_point() +
-  labs(title = "Year Built vs. Sale Price")
+  labs(title = "Year Built vs. Sale Price (With Major Outliers)")
 ```
 
     ## Warning: Use of `` ames_new$`Sale Price` `` is discouraged.
@@ -219,14 +232,26 @@ ggplot(ames_new, aes(x = YearBuilt, y = ames_new$`Sale Price`)) +
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
+This is the plot with outliers. It is difficult to see the trend of the
+rest of the data, but the major outliers are all built after 2000.
+
 ``` r
-ames_new <- ames_new %>% filter(ames_new$`Sale Price` != 0)
+library(ggplot2)
+library(dplyr)
+ames_new <- ames_new %>% filter(ames_new$`Sale Price` < 1000000)
+
 ggplot(ames_new, aes(x = YearBuilt, y = ames_new$`Sale Price`)) +
   geom_point() +
-  labs(title = "Year Built vs. Sale Price")
+  labs(title = "Year Built vs. Sale Price (Without Major Outliers)")
 ```
 
     ## Warning: Use of `` ames_new$`Sale Price` `` is discouraged.
     ## ℹ Use `Sale Price` instead.
 
-![](README_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+This scatter plot shows that there isn’t too much of a relationship
+between YearBuilt and Sale Price. There appears to be a slight curve in
+the data, that as YearBuilt increases, sale price increases. The only
+oddity in step 3 was that there were a lot of values that were 0, but
+these scatter plots removed those values.

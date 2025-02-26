@@ -175,7 +175,7 @@ This is the plot with outliers. It is difficult to see the trend of the rest of 
 ```{r, message = FALSE}
 library(ggplot2)
 library(dplyr)
-ames_new <- ames_new %>% filter(ames_new$`Sale Price` < 100000)
+ames_new <- ames_new %>% filter(ames_new$`Sale Price` < 1000000)
 
 ggplot(ames_new, aes(x = YearBuilt, y = ames_new$`Sale Price`)) +
   geom_point() +
@@ -183,5 +183,5 @@ ggplot(ames_new, aes(x = YearBuilt, y = ames_new$`Sale Price`)) +
 
 ```
 
-This scatterplot shows that there really isn't a relationship between YearBuilt and Sale Price. The only oddity in step 3 was that there were a lot of values that were 0, but these scatterplots removed those values.
+This scatter plot shows that there is a weak positive relationship between YearBuilt and Sale Price. There appears to be a slight curve in the data, that as YearBuilt increases, sale price increases. The only oddity in step 3 was that there were a lot of values that were 0, but these scatter plots removed those values.
 

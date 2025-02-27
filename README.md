@@ -155,7 +155,8 @@ ggplot(ames, aes(x = Bedrooms)) +
   geom_bar()
 ```
 
-    ## Warning: Removed 447 rows containing non-finite values (`stat_count()`).
+    ## Warning: Removed 447 rows containing non-finite outside the scale range
+    ## (`stat_count()`).
 
 ![](README_files/figure-gfm/setup1-1.png)<!-- -->
 
@@ -167,7 +168,8 @@ ggplot(ames, aes(x = Bedrooms, y = `Sale Price`)) +
   coord_flip() 
 ```
 
-    ## Warning: Removed 447 rows containing missing values (`geom_point()`).
+    ## Warning: Removed 447 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
 
 ![](README_files/figure-gfm/setup2-1.png)<!-- --> This follows the
 general pattern, and doesn’t describe any oddities discussed earlier.
@@ -231,7 +233,8 @@ ggplot(ames, aes(x = `TotalLivingArea (sf)`, y = `Sale Price`)) +
   coord_cartesian(ylim = c(100000, 500000))
 ```
 
-    ## Warning: Removed 447 rows containing missing values (`geom_point()`).
+    ## Warning: Removed 447 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
 
 ![](README_files/figure-gfm/setup3-1.png)<!-- -->
 
